@@ -1,12 +1,19 @@
 // Create our image list component
 // Import React
-import React from 'react'
+import React from 'react';
+import ImageDetail from './image_detail';
 
 // Create our component
-const ImageList = () => {
+const ImageList = (props) => {
+  const validImages = props.images.filter(image => !image.is_album);
+
+  const RenderedImages = validImages.map(image =>
+    <ImageDetail key={image.title} image={image} />
+  );
+
   return (
-    <ul>
-      <li>Image Detail</li>
+    <ul className="media-list list-group">
+      {RenderedImages}
     </ul>
   );
 };
